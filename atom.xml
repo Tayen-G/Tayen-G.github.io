@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://tayen-g.github.io/"/>
-  <updated>2017-07-28T07:57:40.642Z</updated>
+  <updated>2017-07-28T08:21:17.774Z</updated>
   <id>https://tayen-g.github.io/</id>
   
   <author>
@@ -19,8 +19,8 @@
     <title>Ajax学习笔记（理论篇）</title>
     <link href="https://tayen-g.github.io/2017/07/27/2017-7-27-Ajax%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E7%90%86%E8%AE%BA%E7%AF%87%EF%BC%89/"/>
     <id>https://tayen-g.github.io/2017/07/27/2017-7-27-Ajax学习笔记（理论篇）/</id>
-    <published>2017-07-26T16:00:00.000Z</published>
-    <updated>2017-07-28T07:57:40.642Z</updated>
+    <published>2017-07-27T00:00:00.000Z</published>
+    <updated>2017-07-28T08:21:17.774Z</updated>
     
     <content type="html"><![CDATA[<p>AJAX即异步JavaScript和XML。是一种在无需重新加载整个网页的情况下，能够更新部分网页的技术。通过在后台与服务器进行少量数据交换，可以使网页实现异步更新，在不重新加载整个网页的情况下，对网页的某部分内容进行更新。<br><a id="more"></a></p>
 <h1 id="了解HTTP"><a href="#了解HTTP" class="headerlink" title="了解HTTP"></a>了解HTTP</h1><ul>
