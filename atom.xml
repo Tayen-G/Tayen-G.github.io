@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://tayen-g.github.io/"/>
-  <updated>2017-07-28T05:35:27.603Z</updated>
+  <updated>2017-07-28T07:57:40.642Z</updated>
   <id>https://tayen-g.github.io/</id>
   
   <author>
@@ -20,9 +20,9 @@
     <link href="https://tayen-g.github.io/2017/07/27/2017-7-27-Ajax%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E7%90%86%E8%AE%BA%E7%AF%87%EF%BC%89/"/>
     <id>https://tayen-g.github.io/2017/07/27/2017-7-27-Ajax学习笔记（理论篇）/</id>
     <published>2017-07-26T16:00:00.000Z</published>
-    <updated>2017-07-28T05:35:27.603Z</updated>
+    <updated>2017-07-28T07:57:40.642Z</updated>
     
-    <content type="html"><![CDATA[<a id="more"></a>
+    <content type="html"><![CDATA[<p>AJAX即异步JavaScript和XML。是一种在无需重新加载整个网页的情况下，能够更新部分网页的技术。通过在后台与服务器进行少量数据交换，可以使网页实现异步更新，在不重新加载整个网页的情况下，对网页的某部分内容进行更新。<br><a id="more"></a></p>
 <h1 id="了解HTTP"><a href="#了解HTTP" class="headerlink" title="了解HTTP"></a>了解HTTP</h1><ul>
 <li><h2 id="计算机通过网络进行通信的规则"><a href="#计算机通过网络进行通信的规则" class="headerlink" title="计算机通过网络进行通信的规则"></a>计算机通过网络进行通信的规则</h2></li>
 <li><h2 id="无状态的协议"><a href="#无状态的协议" class="headerlink" title="无状态的协议"></a>无状态的协议</h2>   不建立持久连接，服务端不保留客户端信息</li>
@@ -93,12 +93,12 @@
 </li>
 </ul>
 <p>用onreadystatechange方法判断响应是否完成</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">request.onreaystatechange=function()&#123;</div><div class="line">  if(request.readyState===4&amp;&amp;request.status===200//请求成功)</div><div class="line">    //进一步操作</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">request.onreaystatechange=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">if</span>(request.readyState===<span class="number">4</span>&amp;&amp;request.status===<span class="number">200</span><span class="comment">//请求成功)</span></div><div class="line">    <span class="comment">//进一步操作</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 ]]></content>
     
     <summary type="html">
     
-      AJAX即异步JavaScript和XML。是一种在无需重新加载整个网页的情况下，能够更新部分网页的技术。通过在后台与服务器进行少量数据交换，可以使网页实现异步更新，在不重新加载整个网页的情况下，对网页的某部分内容进行更新。
+      &lt;p&gt;AJAX即异步JavaScript和XML。是一种在无需重新加载整个网页的情况下，能够更新部分网页的技术。通过在后台与服务器进行少量数据交换，可以使网页实现异步更新，在不重新加载整个网页的情况下，对网页的某部分内容进行更新。&lt;br&gt;
     
     </summary>
     
