@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>Ajax学习笔记（理论篇） | Tayen&#39;s Blog | 行走在路上~</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Ajax,Php">
+    <meta name="description" content="AJAX即异步JavaScript和XML。是一种在无需重新加载整个网页的情况下，能够更新部分网页的技术。通过在后台与服务器进行少量数据交换，可以使网页实现异步更新，在不重新加载整个网页的情况下，对网页的某部分内容进行更新。">
+<meta name="keywords" content="Ajax,Php">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ajax学习笔记（理论篇）">
+<meta property="og:url" content="https://tayen-g.github.io/2017/07/27/2017-7-27-Ajax学习笔记（理论篇）/index.html">
+<meta property="og:site_name" content="Tayen&#39;s Blog">
+<meta property="og:description" content="AJAX即异步JavaScript和XML。是一种在无需重新加载整个网页的情况下，能够更新部分网页的技术。通过在后台与服务器进行少量数据交换，可以使网页实现异步更新，在不重新加载整个网页的情况下，对网页的某部分内容进行更新。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-07-28T05:35:27.603Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Ajax学习笔记（理论篇）">
+<meta name="twitter:description" content="AJAX即异步JavaScript和XML。是一种在无需重新加载整个网页的情况下，能够更新部分网页的技术。通过在后台与服务器进行少量数据交换，可以使网页实现异步更新，在不重新加载整个网页的情况下，对网页的某部分内容进行更新。">
+    
+        <link rel="alternate" type="application/atom+xml" title="Tayen&#39;s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/author.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Tayen</h5>
+          <a href="mailto:tayenguo@163.com" title="tayenguo@163.com" class="mail">tayenguo@163.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-归档"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-标签"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/tayen-g" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/6077792238" target="_blank" >
+                <i class="icon icon-lg icon-微博"></i>
+                微博
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Ajax学习笔记（理论篇）</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Ajax学习笔记（理论篇）</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-07-26T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2017-07-27
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/学习/">学习</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#了解HTTP"><span class="post-toc-number">1.</span> <span class="post-toc-text">了解HTTP</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#计算机通过网络进行通信的规则"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">计算机通过网络进行通信的规则</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#无状态的协议"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">无状态的协议</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#请求过程"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">请求过程</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#http请求（四个部分）"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">http请求（四个部分）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#GET"><span class="post-toc-number">1.4.1.</span> <span class="post-toc-text">GET</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#POST"><span class="post-toc-number">1.4.2.</span> <span class="post-toc-text">POST</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#HTTP响应"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">HTTP响应</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Ajax核心"><span class="post-toc-number">2.</span> <span class="post-toc-text">Ajax核心</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#IE6以上的浏览器"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">IE6以上的浏览器</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#IE6以下"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">IE6以下</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#XMLHttpRequest发送请求"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">XMLHttpRequest发送请求</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#构造请求open-method-url-async"><span class="post-toc-number">2.3.1.</span> <span class="post-toc-text">构造请求open(method,url[,async])</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#发送send-string"><span class="post-toc-number">2.3.2.</span> <span class="post-toc-text">发送send(string)</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#XMLHttpRequest获取响应"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">XMLHttpRequest获取响应</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-2017-7-27-Ajax学习笔记（理论篇）"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Ajax学习笔记（理论篇）</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-07-27 00:00:00" datetime="2017-07-26T16:00:00.000Z"  itemprop="datePublished">2017-07-27</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/学习/">学习</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <a id="more"></a>
+<h1 id="了解HTTP"><a href="#了解HTTP" class="headerlink" title="了解HTTP"></a>了解HTTP</h1><ul>
+<li><h2 id="计算机通过网络进行通信的规则"><a href="#计算机通过网络进行通信的规则" class="headerlink" title="计算机通过网络进行通信的规则"></a>计算机通过网络进行通信的规则</h2></li>
+<li><h2 id="无状态的协议"><a href="#无状态的协议" class="headerlink" title="无状态的协议"></a>无状态的协议</h2>   不建立持久连接，服务端不保留客户端信息</li>
+<li><h2 id="请求过程"><a href="#请求过程" class="headerlink" title="请求过程"></a>请求过程</h2><ol>
+<li>建立tcp连接</li>
+<li>浏览器向服务器发送请求命令</li>
+<li>浏览器发送请求头信息</li>
+<li>服务器应答</li>
+<li>服务器发送应答头信息</li>
+<li>服务器向浏览器发送数据 </li>
+<li>服务器关闭tcp连接</li>
+</ol>
+<ul>
+<li><h2 id="http请求（四个部分）"><a href="#http请求（四个部分）" class="headerlink" title="http请求（四个部分）"></a>http请求（四个部分）</h2><ol>
+<li>请求的方法或动作（例如GET或POST）</li>
+<li>正在请求的URL</li>
+<li>请求头，包含客户端环境信息，身份验证信息等</li>
+<li>请求体，请求的正文，包含客户端提交的信息</li>
+</ol>
+</li>
+<li><h3 id="GET"><a href="#GET" class="headerlink" title="GET"></a>GET</h3><p>一般用于信息获取，使用URL传递参数，对发送信息的数量有限制。<br>幂等：执行一次或执行多次获取的信息是相同的。</p>
+</li>
+<li><h3 id="POST"><a href="#POST" class="headerlink" title="POST"></a>POST</h3><p>一般用于修改服务器上的资源，对于发送的信息数量无限制。</p>
+</li>
+<li><h2 id="HTTP响应"><a href="#HTTP响应" class="headerlink" title="HTTP响应"></a>HTTP响应</h2><ol>
+<li>状态码，显示请求成功/失败；<ul>
+<li>1xx 受到请求，正在处理</li>
+<li>2xx 请求被正确接收</li>
+<li>3xx 重定向</li>
+<li>4xx 客户端错误（提交的请求有误）</li>
+<li>5xx 服务器错误（不能完成对请求的处理）</li>
+</ul>
+</li>
+<li>响应头，包含服务端的一些信息；</li>
+<li>响应体，响应正文，服务器返回的资源。</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="Ajax核心"><a href="#Ajax核心" class="headerlink" title="Ajax核心"></a>Ajax核心</h1><ul>
+<li><h2 id="IE6以上的浏览器"><a href="#IE6以上的浏览器" class="headerlink" title="IE6以上的浏览器"></a>IE6以上的浏览器</h2><p>创建XMLHttpRequset()对象<br>eg：request=new XMLHttpRequest();</p>
+</li>
+<li><h2 id="IE6以下"><a href="#IE6以下" class="headerlink" title="IE6以下"></a>IE6以下</h2><p>request=new ActiveXObject(“Microsoft.XMLHTTP”);</p>
+</li>
+<li><h2 id="XMLHttpRequest发送请求"><a href="#XMLHttpRequest发送请求" class="headerlink" title="XMLHttpRequest发送请求"></a>XMLHttpRequest发送请求</h2><ul>
+<li><h3 id="构造请求open-method-url-async"><a href="#构造请求open-method-url-async" class="headerlink" title="构造请求open(method,url[,async])"></a>构造请求open(method,url[,async])</h3>method：发送请求的方法<br>url：请求的地址（可使用相对地址）<br>async：请求是同步/异步（true/false）默认true</li>
+<li><h3 id="发送send-string"><a href="#发送send-string" class="headerlink" title="发送send(string)"></a>发送send(string)</h3>string：GET方法:NULL；POST方法:需要参数，以及http头信息</li>
+</ul>
+</li>
+<li><h2 id="XMLHttpRequest获取响应"><a href="#XMLHttpRequest获取响应" class="headerlink" title="XMLHttpRequest获取响应"></a>XMLHttpRequest获取响应</h2><ul>
+<li>reponseText：获取字符串形式的响应数据</li>
+<li>reponseXML：获取XML形式的响应数据</li>
+<li>status/statusText：以数字/文本的形式返回http状态码</li>
+<li>getAllResponseHeader()：获取所有的响应报头</li>
+<li><p>getResponseHeaer()：查询响应中某个字段的值</p>
+</li>
+<li><p>readyState属性：代表服务器响应的变化</p>
+<ul>
+<li>0：请求未初始化，open还没调用</li>
+<li>1：服务器连接已建立，open已调用</li>
+<li>2：请求已接收，收到头信息</li>
+<li>3：请求处理中，收到响应主体</li>
+<li>4：请求已完成，响应已就绪</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>用onreadystatechange方法判断响应是否完成</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">request.onreaystatechange=function()&#123;</div><div class="line">  if(request.readyState===4&amp;&amp;request.status===200//请求成功)</div><div class="line">    //进一步操作</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-07-28T05:35:27.603Z" itemprop="dateUpdated">2017-07-28 13:35:27</time>
+</span><br>
+
+
+        
+        欢迎大家在文章下方评论交流，本文链接：<a href="/2017/07/27/2017-7-27-Ajax学习笔记（理论篇）/" target="_blank" rel="external">https://tayen-g.github.io/2017/07/27/2017-7-27-Ajax学习笔记（理论篇）/</a>
+        
+    </div>
+    <footer>
+        <a href="https://tayen-g.github.io">
+            <img src="/img/author.jpg" alt="Tayen">
+            Tayen
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ajax/">Ajax</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Php/">Php</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://tayen-g.github.io/2017/07/27/2017-7-27-Ajax学习笔记（理论篇）/&title=《Ajax学习笔记（理论篇）》 — Tayen's Blog&pic=https://tayen-g.github.io/img/author.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://tayen-g.github.io/2017/07/27/2017-7-27-Ajax学习笔记（理论篇）/&title=《Ajax学习笔记（理论篇）》 — Tayen's Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://tayen-g.github.io/2017/07/27/2017-7-27-Ajax学习笔记（理论篇）/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Ajax学习笔记（理论篇）》 — Tayen's Blog&url=https://tayen-g.github.io/2017/07/27/2017-7-27-Ajax学习笔记（理论篇）/&via=https://tayen-g.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://tayen-g.github.io/2017/07/27/2017-7-27-Ajax学习笔记（理论篇）/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+
+
+    
+
+
+
+
+
+<section class="comments" id="comments">
+    <!-- UY BEGIN -->
+    <div id="uyan_frame"></div>
+    <script src="http://v2.uyan.cc/code/uyan.js?uid=tayenguo"></script>
+    <!-- UY END -->
+</section>
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        (万一真的有人给呢)谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.png">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Tayen &copy; 2015 - 2017</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://tayen-g.github.io/2017/07/27/2017-7-27-Ajax学习笔记（理论篇）/&title=《Ajax学习笔记（理论篇）》 — Tayen's Blog&pic=https://tayen-g.github.io/img/author.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://tayen-g.github.io/2017/07/27/2017-7-27-Ajax学习笔记（理论篇）/&title=《Ajax学习笔记（理论篇）》 — Tayen's Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://tayen-g.github.io/2017/07/27/2017-7-27-Ajax学习笔记（理论篇）/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Ajax学习笔记（理论篇）》 — Tayen's Blog&url=https://tayen-g.github.io/2017/07/27/2017-7-27-Ajax学习笔记（理论篇）/&via=https://tayen-g.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://tayen-g.github.io/2017/07/27/2017-7-27-Ajax学习笔记（理论篇）/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACq0lEQVR42u3aQW6DQAwF0N7/0um2Ugv53zOTsnisogSBH5Wwa/vrKz5eP47f3199c//56tff51zdfduBh4eHtxD61eVe5XF1l5Vv8njw8PDwPsO7DygPOkkD7Tt8KR48PDy8B/DuA82DyMvlpATHw8PDez4v/7VtUrRJAg8PD++/eO3l7hl5s2DWzjjSa8HDw8PruqzRFOk5n4/M9/Dw8PCWp+qzsVbeus0TxjBaPDw8vAO8/IWbU5O2RVusz0ZoeHh4eKd5bVshSQ9t8pg1iN8U33h4eHhbebuWA+4L35bdNouXOih4eHh4C7zZOlT74GbnDwdyeHh4eMd47epAUlLnq1ctvvgVDw8P7wCvbRm0jdq2ZD9xLzw8PLy992ovlBfiSTLYuzsWldR4eHh4m3j5UGpWKO8q3NtWLx4eHt4JXlvODhsBcQppo8qbI3h4eHjnePmiwGzwn3yTpJPNvRY8PDy8Bd4MkJS27ZBsuC6wkmHw8PDwAl7eMpglidk5s9WEN21cPDw8vAO8/OWePIhd7dcc/Mf5eHh4eMd4OWl9jaCt9NsGBB4eHt5p3q4hUz4qmxXHK9fHw8PDO8GbMXJqDtubPPDw8PDO8fJB/uxxrK8F1IsCs4Dw8PDwYt5KYmhbt7N2xuwR4OHh4Z3jJf/2t8tV+eu7TQZLfzE8PDy8rbwck5Td7ePIh2d5hHh4eHinee1gPg+6HbbNDjw8PLzP8F7lMSuCZ83idp0LDw8P7zO89rWbD/LbwndWpm+A4eHh4Y14bTLIN7mShsL66sCbe+Hh4eEd4+0ajLWPrw63XHfAw8PDexovSRXrgSb4y3vh4eHhPYC33jxt27Wz1IKHh4d3mpe3BmZLVHkRvLJ0tdTGxcPDw4t568XuSnpoFwL2rmrh4eHhlbxvOV41ypc5GhwAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

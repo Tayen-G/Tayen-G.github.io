@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Tayen&#39;s Blog</title>
+  <subtitle>行走在路上~</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://tayen-g.github.io/"/>
+  <updated>2017-07-28T05:35:27.603Z</updated>
+  <id>https://tayen-g.github.io/</id>
+  
+  <author>
+    <name>Tayen</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Ajax学习笔记（理论篇）</title>
+    <link href="https://tayen-g.github.io/2017/07/27/2017-7-27-Ajax%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E7%90%86%E8%AE%BA%E7%AF%87%EF%BC%89/"/>
+    <id>https://tayen-g.github.io/2017/07/27/2017-7-27-Ajax学习笔记（理论篇）/</id>
+    <published>2017-07-26T16:00:00.000Z</published>
+    <updated>2017-07-28T05:35:27.603Z</updated>
+    
+    <content type="html"><![CDATA[<a id="more"></a>
+<h1 id="了解HTTP"><a href="#了解HTTP" class="headerlink" title="了解HTTP"></a>了解HTTP</h1><ul>
+<li><h2 id="计算机通过网络进行通信的规则"><a href="#计算机通过网络进行通信的规则" class="headerlink" title="计算机通过网络进行通信的规则"></a>计算机通过网络进行通信的规则</h2></li>
+<li><h2 id="无状态的协议"><a href="#无状态的协议" class="headerlink" title="无状态的协议"></a>无状态的协议</h2>   不建立持久连接，服务端不保留客户端信息</li>
+<li><h2 id="请求过程"><a href="#请求过程" class="headerlink" title="请求过程"></a>请求过程</h2><ol>
+<li>建立tcp连接</li>
+<li>浏览器向服务器发送请求命令</li>
+<li>浏览器发送请求头信息</li>
+<li>服务器应答</li>
+<li>服务器发送应答头信息</li>
+<li>服务器向浏览器发送数据 </li>
+<li>服务器关闭tcp连接</li>
+</ol>
+<ul>
+<li><h2 id="http请求（四个部分）"><a href="#http请求（四个部分）" class="headerlink" title="http请求（四个部分）"></a>http请求（四个部分）</h2><ol>
+<li>请求的方法或动作（例如GET或POST）</li>
+<li>正在请求的URL</li>
+<li>请求头，包含客户端环境信息，身份验证信息等</li>
+<li>请求体，请求的正文，包含客户端提交的信息</li>
+</ol>
+</li>
+<li><h3 id="GET"><a href="#GET" class="headerlink" title="GET"></a>GET</h3><p>一般用于信息获取，使用URL传递参数，对发送信息的数量有限制。<br>幂等：执行一次或执行多次获取的信息是相同的。</p>
+</li>
+<li><h3 id="POST"><a href="#POST" class="headerlink" title="POST"></a>POST</h3><p>一般用于修改服务器上的资源，对于发送的信息数量无限制。</p>
+</li>
+<li><h2 id="HTTP响应"><a href="#HTTP响应" class="headerlink" title="HTTP响应"></a>HTTP响应</h2><ol>
+<li>状态码，显示请求成功/失败；<ul>
+<li>1xx 受到请求，正在处理</li>
+<li>2xx 请求被正确接收</li>
+<li>3xx 重定向</li>
+<li>4xx 客户端错误（提交的请求有误）</li>
+<li>5xx 服务器错误（不能完成对请求的处理）</li>
+</ul>
+</li>
+<li>响应头，包含服务端的一些信息；</li>
+<li>响应体，响应正文，服务器返回的资源。</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="Ajax核心"><a href="#Ajax核心" class="headerlink" title="Ajax核心"></a>Ajax核心</h1><ul>
+<li><h2 id="IE6以上的浏览器"><a href="#IE6以上的浏览器" class="headerlink" title="IE6以上的浏览器"></a>IE6以上的浏览器</h2><p>创建XMLHttpRequset()对象<br>eg：request=new XMLHttpRequest();</p>
+</li>
+<li><h2 id="IE6以下"><a href="#IE6以下" class="headerlink" title="IE6以下"></a>IE6以下</h2><p>request=new ActiveXObject(“Microsoft.XMLHTTP”);</p>
+</li>
+<li><h2 id="XMLHttpRequest发送请求"><a href="#XMLHttpRequest发送请求" class="headerlink" title="XMLHttpRequest发送请求"></a>XMLHttpRequest发送请求</h2><ul>
+<li><h3 id="构造请求open-method-url-async"><a href="#构造请求open-method-url-async" class="headerlink" title="构造请求open(method,url[,async])"></a>构造请求open(method,url[,async])</h3>method：发送请求的方法<br>url：请求的地址（可使用相对地址）<br>async：请求是同步/异步（true/false）默认true</li>
+<li><h3 id="发送send-string"><a href="#发送send-string" class="headerlink" title="发送send(string)"></a>发送send(string)</h3>string：GET方法:NULL；POST方法:需要参数，以及http头信息</li>
+</ul>
+</li>
+<li><h2 id="XMLHttpRequest获取响应"><a href="#XMLHttpRequest获取响应" class="headerlink" title="XMLHttpRequest获取响应"></a>XMLHttpRequest获取响应</h2><ul>
+<li>reponseText：获取字符串形式的响应数据</li>
+<li>reponseXML：获取XML形式的响应数据</li>
+<li>status/statusText：以数字/文本的形式返回http状态码</li>
+<li>getAllResponseHeader()：获取所有的响应报头</li>
+<li><p>getResponseHeaer()：查询响应中某个字段的值</p>
+</li>
+<li><p>readyState属性：代表服务器响应的变化</p>
+<ul>
+<li>0：请求未初始化，open还没调用</li>
+<li>1：服务器连接已建立，open已调用</li>
+<li>2：请求已接收，收到头信息</li>
+<li>3：请求处理中，收到响应主体</li>
+<li>4：请求已完成，响应已就绪</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>用onreadystatechange方法判断响应是否完成</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">request.onreaystatechange=function()&#123;</div><div class="line">  if(request.readyState===4&amp;&amp;request.status===200//请求成功)</div><div class="line">    //进一步操作</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      AJAX即异步JavaScript和XML。是一种在无需重新加载整个网页的情况下，能够更新部分网页的技术。通过在后台与服务器进行少量数据交换，可以使网页实现异步更新，在不重新加载整个网页的情况下，对网页的某部分内容进行更新。
+    
+    </summary>
+    
+      <category term="学习" scheme="https://tayen-g.github.io/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="Ajax" scheme="https://tayen-g.github.io/tags/Ajax/"/>
+    
+      <category term="Php" scheme="https://tayen-g.github.io/tags/Php/"/>
+    
+  </entry>
+  
+</feed>
