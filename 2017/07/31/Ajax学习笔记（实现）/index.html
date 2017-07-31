@@ -31,7 +31,7 @@
 <meta property="og:image" content="http://otqluvomk.bkt.clouddn.com/TIM%E6%88%AA%E5%9B%BE20170731102831.png">
 <meta property="og:image" content="http://otqluvomk.bkt.clouddn.com/TIM%E6%88%AA%E5%9B%BE20170731102842.png">
 <meta property="og:image" content="http://otqluvomk.bkt.clouddn.com/TIM%E6%88%AA%E5%9B%BE20170731102852.png">
-<meta property="og:updated_time" content="2017-07-31T02:54:30.895Z">
+<meta property="og:updated_time" content="2017-07-31T03:18:08.396Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Ajax学习笔记（实现）">
 <meta name="twitter:description" content="上篇文章提到了Ajax相关的理论知识，这一篇来写一写具体的原生实现。">
@@ -238,7 +238,11 @@
 <p>前端页面中，将<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">request.open(<span class="string">'GET'</span>, <span class="string">'doAction.php?number='</span> + <span class="built_in">document</span>.getElementById(<span class="string">'keyword'</span>).value);</div><div class="line">request.send();</div></pre></td></tr></table></figure></p>
 <p>更改为<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">request.open(<span class="string">'POST'</span>, <span class="string">'doAction.php'</span>);</div><div class="line"><span class="keyword">var</span> data=<span class="string">'number='</span>+<span class="built_in">document</span>.getElementByID(<span class="string">'keyword'</span>).value;</div><div class="line">request.setRequestHeader(<span class="string">"Content-Type"</span>,<span class="string">"application/x-www-form-urlencoded"</span>);</div><div class="line">request.send(data);</div></pre></td></tr></table></figure></p>
 <ul>
-<li>使用POST方法时，一定要在Open和send中间加这一句<br>‘’’php<br>request.setRequestHeader(“Content-Type”,”application/x-www-form-urlencoded”);<br>```<br>个人理解是因为GET方法和POST方法给后台传递数据的方式不同。可以详细了解一下HTTP协议。</li>
+<li>使用POST方法时，一定要在Open和send中间加这一句<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">request.setRequestHeader(<span class="string">"Content-Type"</span>,<span class="string">"application/x-www-form-urlencoded"</span>);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>个人理解是因为GET方法和POST方法给后台传递数据的方式不同。可以详细了解一下HTTP协议。</p>
+<ul>
 <li>构造一个变量作为send方法的参数。这个变量的格式类似表单提交。</li>
 </ul>
 <p>最后贴个测试结果。<br>首先打开页面<br><figure class="image-bubble">
@@ -267,7 +271,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2017-07-31T02:54:30.895Z" itemprop="dateUpdated">2017-07-31 02:54:30</time>
+    最后更新时间：<time datetime="2017-07-31T03:18:08.396Z" itemprop="dateUpdated">2017-07-31 03:18:08</time>
 </span><br>
 
 
