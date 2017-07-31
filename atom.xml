@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://tayen-g.github.io/"/>
-  <updated>2017-07-28T09:29:12.073Z</updated>
+  <updated>2017-07-31T02:32:40.870Z</updated>
   <id>https://tayen-g.github.io/</id>
   
   <author>
@@ -16,11 +16,111 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Ajax学习笔记（实现）</title>
+    <link href="https://tayen-g.github.io/2017/07/31/Ajax%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%AE%9E%E7%8E%B0%EF%BC%89/"/>
+    <id>https://tayen-g.github.io/2017/07/31/Ajax学习笔记（实现）/</id>
+    <published>2017-07-31T08:53:00.000Z</published>
+    <updated>2017-07-31T02:32:40.870Z</updated>
+    
+    <content type="html"><![CDATA[<p>上篇文章提到了Ajax相关的理论知识，这一篇来写一写具体的原生实现。<br>用来测试的页面具体思路是通过在输入框中输入员工编号，即时的查询是否有此员工存在并显示查询结果。<br>首先写后台，用php。<br>这里用一个数组储存员工信息，将脚本保存为doAction.php。<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line">    header(<span class="string">"Content-Type:text/plain;charset=utf-8"</span>);</div><div class="line">    $staff = <span class="keyword">array</span>(<span class="keyword">array</span>(<span class="string">"name"</span>=&gt;<span class="string">"大"</span>,<span class="string">"number"</span>=&gt;<span class="string">"101"</span>,<span class="string">"sex"</span>=&gt;<span class="string">"男"</span>,<span class="string">"job"</span>=&gt;<span class="string">"经理"</span>),</div><div class="line">    <span class="keyword">array</span>(<span class="string">"name"</span>=&gt;<span class="string">"二"</span>,<span class="string">"number"</span>=&gt;<span class="string">"102"</span>,<span class="string">"sex"</span>=&gt;<span class="string">"男"</span>,<span class="string">"job"</span>=&gt;<span class="string">"工程师"</span>),</div><div class="line">    <span class="keyword">array</span>(<span class="string">"name"</span>=&gt;<span class="string">"三"</span>,<span class="string">"number"</span>=&gt;<span class="string">"103"</span>,<span class="string">"sex"</span>=&gt;<span class="string">"女"</span>,<span class="string">"job"</span>=&gt;<span class="string">"销售"</span>)</div><div class="line">    );    </div><div class="line">    $number=$_GET[<span class="string">'number'</span>];</div><div class="line">    <span class="keyword">foreach</span> ($staff <span class="keyword">as</span> $value) &#123;</div><div class="line">      <span class="keyword">if</span>($value[<span class="string">'number'</span>]==$number)&#123;</div><div class="line">        $result=<span class="string">"找到员工，编号："</span>.$value[<span class="string">'number'</span>].<span class="string">"，姓名："</span>.$value[<span class="string">'name'</span>].<span class="string">"，性别"</span>.$value[<span class="string">'sex'</span>].<span class="string">"，职位"</span>.$value[<span class="string">'job'</span>];</div><div class="line">        <span class="keyword">break</span>;</div><div class="line">      &#125;<span class="keyword">else</span> &#123;</div><div class="line"></div><div class="line">        $result=<span class="string">"没有找到员工"</span>;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">echo</span> $result;</div></pre></td></tr></table></figure></p>
+<p>接下来是前端页面,以及要实现ajax的js代码。<br>说一下其中几个关键点：</p>
+<ul>
+<li>输入框中，添加onkeyup属性，即松开键盘时执行search()函数</li>
+<li>js代码中，首先创建XMLHttpRequest对象，用open方法发起一个请求。因为是Get方法，所以要在url中添加要查询的关键字number</li>
+<li>接下来用send方法发送请求</li>
+<li>每当readystate发生改变时，调用onreadystatechange所存储的函数</li>
+<li>readystate返回当前XMLHttpRequest请求的状态，分别有以下五种（表格来自w3school）</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>状态</th>
+<th>名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>Uninitialized</td>
+<td>初始化状态。XMLHttpRequest 对象已创建或已被 abort() 方法重置</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Open</td>
+<td>open() 方法已调用，但是 send() 方法未调用。请求还没有被发送</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Sent</td>
+<td>Send() 方法已调用，HTTP 请求已发送到 Web 服务器。未接收到响应</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Receiving</td>
+<td>所有响应头部都已经接收到。响应体开始接收但未完成</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Loaded</td>
+<td>HTTP 响应已经完全接收</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>status是由服务器返回的状态码，200表示成功，常见错误404，表示未找到资源。</li>
+</ul>
+<p>通过js判断与服务器交换数据是否成功，成功的话显示服务器返回的文本，即responseText，不成功的话返回服务器的状态码。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">&lt;h2&gt;员工查询&lt;<span class="regexp">/h2&gt; 请输入员工编号：</span></div><div class="line"><span class="regexp">  &lt;input type="text" name="keyword" id="keyword" onkeyup="search()"&gt;</span></div><div class="line"><span class="regexp">  &lt;br/</span>&gt;</div><div class="line">  &lt;p id=<span class="string">"searchResult"</span>&gt;&lt;/p&gt;</div><div class="line"></div><div class="line">    &lt;script type=<span class="string">"text/javascript"</span>&gt;</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">search</span>(<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="keyword">var</span> request = <span class="keyword">new</span> XMLHttpRequest();</div><div class="line">      request.open(<span class="string">'GET'</span>, <span class="string">'doAction.php?number='</span> + <span class="built_in">document</span>.getElementById(<span class="string">'keyword'</span>).value);</div><div class="line">      request.send();</div><div class="line">      request.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">if</span> (request.readyState === <span class="number">4</span>&amp;&amp;request.status === <span class="number">200</span>) &#123;</div><div class="line">           <span class="built_in">document</span>.getElementById(<span class="string">'searchResult'</span>).innerHTML = request.responseText;</div><div class="line">          <span class="keyword">else</span> &#123;</div><div class="line">          alert(request.status);</div><div class="line">          &#125;</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">    &lt;script&gt;</div></pre></td></tr></table></figure></p>
+<p>以上是利用Get方法进行Ajax技术的实现。利用Post方法同样可以实现这一技术。首先在php页面做改动，将<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$number=$_GET[<span class="string">'number'</span>];</div></pre></td></tr></table></figure></p>
+<p>更改为<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$number=$_POST[<span class="string">'number'</span>];</div></pre></td></tr></table></figure></p>
+<p>前端页面中，将<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">request.open(<span class="string">'GET'</span>, <span class="string">'doAction.php?number='</span> + <span class="built_in">document</span>.getElementById(<span class="string">'keyword'</span>).value);</div><div class="line">request.send();</div></pre></td></tr></table></figure></p>
+<p>更改为<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">request.open(<span class="string">'POST'</span>, <span class="string">'doAction.php'</span>);</div><div class="line"><span class="keyword">var</span> data=<span class="string">'number='</span>+<span class="built_in">document</span>.getElementByID(<span class="string">'keyword'</span>).value;</div><div class="line">request.setRequestHeader(<span class="string">"Content-Type"</span>,<span class="string">"application/x-www-form-urlencoded"</span>);</div><div class="line">request.send(data);</div></pre></td></tr></table></figure></p>
+<ul>
+<li>使用POST方法时，一定要在Open和send中间加这一句<br>‘’’php<br>request.setRequestHeader(“Content-Type”,”application/x-www-form-urlencoded”);<br>```<br>个人理解是因为GET方法和POST方法给后台传递数据的方式不同。可以详细了解一下HTTP协议。</li>
+<li>构造一个变量作为send方法的参数。这个变量的格式类似表单提交。</li>
+</ul>
+<p>最后贴个测试结果。<br>首先打开页面<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://otqluvomk.bkt.clouddn.com/TIM%E6%88%AA%E5%9B%BE20170731102831.png" alt="打开页面无输入" title="">
+                </div>
+                <div class="image-caption">打开页面无输入</div>
+            </figure><br>输入没有查询结果的数字<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://otqluvomk.bkt.clouddn.com/TIM%E6%88%AA%E5%9B%BE20170731102842.png" alt="输入没有结果的查询" title="">
+                </div>
+                <div class="image-caption">输入没有结果的查询</div>
+            </figure><br>输入有查询结果的数字<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://otqluvomk.bkt.clouddn.com/TIM%E6%88%AA%E5%9B%BE20170731102852.png" alt="输入有结果的查询" title="">
+                </div>
+                <div class="image-caption">输入有结果的查询</div>
+            </figure></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;上篇文章提到了Ajax相关的理论知识，这一篇来写一写具体的原生实现。&lt;br&gt;用来测试的页面具体思路是通过在输入框中输入员工编号，即时的查询是否有此员工存在并显示查询结果。&lt;br&gt;首先写后台，用php。&lt;br&gt;这里用一个数组储存员工信息，将脚本保存为doAction.php。
+    
+    </summary>
+    
+      <category term="学习" scheme="https://tayen-g.github.io/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="Ajax" scheme="https://tayen-g.github.io/tags/Ajax/"/>
+    
+      <category term="Php" scheme="https://tayen-g.github.io/tags/Php/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Ajax学习笔记（理论篇）</title>
     <link href="https://tayen-g.github.io/2017/07/27/2017-7-27-Ajax%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E7%90%86%E8%AE%BA%E7%AF%87%EF%BC%89/"/>
     <id>https://tayen-g.github.io/2017/07/27/2017-7-27-Ajax学习笔记（理论篇）/</id>
     <published>2017-07-27T15:42:25.000Z</published>
-    <updated>2017-07-28T09:29:12.073Z</updated>
+    <updated>2017-07-31T01:43:51.163Z</updated>
     
     <content type="html"><![CDATA[<p>AJAX即异步JavaScript和XML。是一种在无需重新加载整个网页的情况下，能够更新部分网页的技术。通过在后台与服务器进行少量数据交换，可以使网页实现异步更新，在不重新加载整个网页的情况下，对网页的某部分内容进行更新。<br><a id="more"></a></p>
 <h1 id="了解HTTP"><a href="#了解HTTP" class="headerlink" title="了解HTTP"></a>了解HTTP</h1><ul>
@@ -93,7 +193,7 @@
 </li>
 </ul>
 <p>用onreadystatechange方法判断响应是否完成</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">request.onreaystatechange=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">if</span>(request.readyState===<span class="number">4</span>&amp;&amp;request.status===<span class="number">200</span><span class="comment">//请求成功)</span></div><div class="line">    <span class="comment">//进一步操作</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">request.onreaystatechange=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">if</span>(request.readyState===<span class="number">4</span>&amp;&amp;request.status===<span class="number">200</span>)<span class="comment">//请求成功</span></div><div class="line">    <span class="comment">//进一步操作</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 ]]></content>
     
     <summary type="html">
