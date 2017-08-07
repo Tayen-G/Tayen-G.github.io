@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>MVC学习（理论篇） | Tayen&#39;s Blog | 行走在路上~</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Php,设计模式">
+    <meta name="description" content="MVC全名是Model View Controller，是模型(model)－视图(view)－控制器(controller)的缩写，一种软件设计典范，是一种设计创建 Web 应用程序的模式。用一种业务逻辑、数据、界面显示分离的方法组织代码，将业务逻辑聚集到一个部件里面，在改进和个性化定制界面及用户交互的同时，不需要重新编写业务逻辑。MVC被独特的发展起来用于映射传统的输入、处理和输出功能在一个逻">
+<meta name="keywords" content="Php,设计模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MVC学习（理论篇）">
+<meta property="og:url" content="https://tayen-g.github.io/2017/08/08/2017-8-7-MVC学习（理论篇）/index.html">
+<meta property="og:site_name" content="Tayen&#39;s Blog">
+<meta property="og:description" content="MVC全名是Model View Controller，是模型(model)－视图(view)－控制器(controller)的缩写，一种软件设计典范，是一种设计创建 Web 应用程序的模式。用一种业务逻辑、数据、界面显示分离的方法组织代码，将业务逻辑聚集到一个部件里面，在改进和个性化定制界面及用户交互的同时，不需要重新编写业务逻辑。MVC被独特的发展起来用于映射传统的输入、处理和输出功能在一个逻">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-08-07T09:40:18.962Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MVC学习（理论篇）">
+<meta name="twitter:description" content="MVC全名是Model View Controller，是模型(model)－视图(view)－控制器(controller)的缩写，一种软件设计典范，是一种设计创建 Web 应用程序的模式。用一种业务逻辑、数据、界面显示分离的方法组织代码，将业务逻辑聚集到一个部件里面，在改进和个性化定制界面及用户交互的同时，不需要重新编写业务逻辑。MVC被独特的发展起来用于映射传统的输入、处理和输出功能在一个逻">
+    
+        <link rel="alternate" type="application/atom+xml" title="Tayen&#39;s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.6.10">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/author.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Tayen</h5>
+          <a href="mailto:tayenguo@163.com" title="tayenguo@163.com" class="mail">tayenguo@163.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-归档"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-标签"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/tayen-g" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/6077792238" target="_blank" >
+                <i class="icon icon-lg icon-微博"></i>
+                微博
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">MVC学习（理论篇）</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">MVC学习（理论篇）</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-08-07T17:03:54.000Z" itemprop="datePublished" class="page-time">
+  2017-08-07
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/学习/">学习</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#MVC含义"><span class="post-toc-number">1.</span> <span class="post-toc-text">MVC含义</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#MVC工作流程"><span class="post-toc-number">2.</span> <span class="post-toc-text">MVC工作流程</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-2017-8-7-MVC学习（理论篇）"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">MVC学习（理论篇）</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-08-07 17:03:54" datetime="2017-08-07T17:03:54.000Z"  itemprop="datePublished">2017-08-07</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/学习/">学习</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>MVC全名是Model View Controller，是模型(model)－视图(view)－控制器(controller)的缩写，一种软件设计典范，是一种设计创建 Web 应用程序的模式。用一种业务逻辑、数据、界面显示分离的方法组织代码，将业务逻辑聚集到一个部件里面，在改进和个性化定制界面及用户交互的同时，不需要重新编写业务逻辑。MVC被独特的发展起来用于映射传统的输入、处理和输出功能在一个逻辑的图形化用户界面的结构中。<br><a id="more"></a></p>
+<h2 id="MVC含义"><a href="#MVC含义" class="headerlink" title="MVC含义"></a>MVC含义</h2><ul>
+<li><blockquote>
+<p>Model 是应用程序中用于处理应用程序数据逻辑的部分。通常模型对象负责在数据库中存取数据。<br>一般在model中定义一些用于存取数据的函数，需要操作时在Controller中调用。</p>
+</blockquote>
+</li>
+<li><blockquote>
+<p>View 是应用程序中处理数据显示的部分。通常视图是依据模型数据创建的。<br>也就是我们能直观看到的部分。</p>
+</blockquote>
+</li>
+<li><blockquote>
+<p>Controller 是应用程序中处理用户交互的部分。通常控制器负责从视图读取数据，控制用户输入，并向模型发送数据。<br>调用model中的函数进行对数据的操作；调用框架核心文件中的函数对视图进行操作。</p>
+</blockquote>
+</li>
+</ul>
+<p>##关于MVC的个人理解<br>在学习这方面的内容的时候感觉理解有些困难，不知道大家有没有这样的感觉。看了许多相关文章介绍，感觉最形象的形容，就是把Model看作厨师，View看作菜单，Controller看作服务员，顾客通过菜单，向服务员点菜，服务员把获取到的这一信息交给后厨，厨师做菜，把做好的菜交给顾客。顾客也就是用户。顾客吃到了菜，就是用户在视图层看到了预期的反馈。</p>
+<h2 id="MVC工作流程"><a href="#MVC工作流程" class="headerlink" title="MVC工作流程"></a>MVC工作流程</h2><ol>
+<li>浏览者-&gt;调用控制器，发出指令</li>
+<li>控制器-&gt;按指令选取一个合适的模型</li>
+<li>模型-&gt;按控制器指令取得相应数据</li>
+<li>控制器-&gt;按指令选取相应视图</li>
+<li>视图-&gt;控制器把第三步取得的数据按用户想要的样子显示</li>
+</ol>
+<p>##MVC模式的作用<br>MVC分层有助于管理复杂的应用程序，因为开发人员可以在一个时间内专门关注一个方面。例如，可以在不依赖业务逻辑的情况下专注于视图设计。同时也让应用程序的测试更加容易。<br>MVC分层同时也简化了分组开发。不同的开发人员可同时开发视图、控制器逻辑和业务逻辑。</p>
+<p>##PS.<br>以上大多数内容来自百科。单看理论性的文章可能很难理解MVC的工作流程或者设计方法。在后边我会写一个基于MVC模式的框架，通过完成一个框架，会加深对这个概念的理解。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-08-07T09:40:18.962Z" itemprop="dateUpdated">2017-08-07 09:40:18</time>
+</span><br>
+
+
+        
+        欢迎大家通过邮件/微博与我交流，本文链接：<a href="/2017/08/08/2017-8-7-MVC学习（理论篇）/" target="_blank" rel="external">https://tayen-g.github.io/2017/08/08/2017-8-7-MVC学习（理论篇）/</a>
+        
+    </div>
+    <footer>
+        <a href="https://tayen-g.github.io">
+            <img src="/img/author.jpg" alt="Tayen">
+            Tayen
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Php/">Php</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://tayen-g.github.io/2017/08/08/2017-8-7-MVC学习（理论篇）/&title=《MVC学习（理论篇）》 — Tayen's Blog&pic=https://tayen-g.github.io/img/author.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://tayen-g.github.io/2017/08/08/2017-8-7-MVC学习（理论篇）/&title=《MVC学习（理论篇）》 — Tayen's Blog&source=MVC全名是Model View Controller，是模型(model)－视图(view)－控制器(controller)的缩写，一种软件设计典范，是..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://tayen-g.github.io/2017/08/08/2017-8-7-MVC学习（理论篇）/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《MVC学习（理论篇）》 — Tayen's Blog&url=https://tayen-g.github.io/2017/08/08/2017-8-7-MVC学习（理论篇）/&via=https://tayen-g.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://tayen-g.github.io/2017/08/08/2017-8-7-MVC学习（理论篇）/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/07/31/2017-7-31-Ajax学习笔记（实现）/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Ajax学习笔记（实现）</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+<section class="comments" id="comments">
+    <!-- UY BEGIN -->
+    <div id="uyan_frame"></div>
+    <script src="http://v2.uyan.cc/code/uyan.js?uid=tayenguo"></script>
+    <!-- UY END -->
+</section>
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        (万一真的有人给呢)谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.png">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Tayen &copy; 2015 - 2017</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://tayen-g.github.io/2017/08/08/2017-8-7-MVC学习（理论篇）/&title=《MVC学习（理论篇）》 — Tayen's Blog&pic=https://tayen-g.github.io/img/author.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://tayen-g.github.io/2017/08/08/2017-8-7-MVC学习（理论篇）/&title=《MVC学习（理论篇）》 — Tayen's Blog&source=MVC全名是Model View Controller，是模型(model)－视图(view)－控制器(controller)的缩写，一种软件设计典范，是..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://tayen-g.github.io/2017/08/08/2017-8-7-MVC学习（理论篇）/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《MVC学习（理论篇）》 — Tayen's Blog&url=https://tayen-g.github.io/2017/08/08/2017-8-7-MVC学习（理论篇）/&via=https://tayen-g.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://tayen-g.github.io/2017/08/08/2017-8-7-MVC学习（理论篇）/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACtklEQVR42u3awWrDMBAE0P7/T6dQeqydmZXkUHg+hdSJ9VywNrP79RUfr5/j/vXVX6/OuTozeX/zgYeHhzda+tXRMq4WkSwxQeZrxsPDwzvNyzeD+8/ebwPJbcpvaLIePDw8vM/ykiP55pXbhIeHh/e/eG2hnDzok1I+KfHx8PDwnufNLpMHCvexQluOH8la8PDw8GLergbYk68/0N/Dw8PDKyOGWfTQbif5wEG0Njw8PLwDvLypnwQQbSSRg/OivFguHh4e3iZePm61dzvJo9t8wAsPDw/vBK8tc2e//dtYduV/9cf/DQ8PD28rb6XwbZtbs+GtNshYyqHx8PDwRrx7ZF5858jkWknU++ZG4OHh4W3itRFA/qm8rZU/4ttr4eHh4Z3gzeaX1ttd+aDA/dYyLK/x8PDwlnltoZxX6/my2vBiGEPg4eHhLfPakndl+KkdHVgJRN78YsDDw8Nb4LXF7q4lrhfN+VACHh4e3l7e3oCgXfTsxhW3CQ8PD+8Ab6XknTWrZsMHs5EvPDw8vHO8+0u25+TvzErtNiLBw8PDO8Fr2/+zAHfXDtaOseLh4eGd4O0qave2zXaFI3h4eHjP8JLNIF9csgEMl57fUTw8PLxjvDaWXdkYkqI5Yb/ZbPDw8PAO8PItYVf525bXLR4PDw/vGd7eh3JefM/K/WHBjYeHh7eJ147U52FBPmI1++ZIhIeHh3eY18ay7YN7PSCuAw48PDy8rbxXeeSFbx465KV5fvt+38HDw8M7wFsJBdoCdxYrtBvMtukJPDw8vLIr1D5880ZUsg20IwV4eHh4n+KtFMqzBeWBbx5G1Ck1Hh4e3od4+WdngLw59yalxsPDw3uct1IKzx7rbQGNh4eH9yQvCSPaM9uW/97vx8PDwzvHaxtgeSTRtr5a0sqoFh4eHt6I9w1dv16TlJLD4gAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.6.10"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.6.10" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
