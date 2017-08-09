@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>一个基于MVC模式的简单框架 | Tayen&#39;s Blog | 行走在路上~</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Php,框架">
+    <meta name="description" content="学习MVC模式的过程中，写了一个简单的框架。并且用这个框架实现了一个简单的留言板。源码在Github里。">
+<meta name="keywords" content="Php,框架">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一个基于MVC模式的简单框架">
+<meta property="og:url" content="https://tayen-g.github.io/2017/08/09/一个基于MVC模式的简单框架/index.html">
+<meta property="og:site_name" content="Tayen&#39;s Blog">
+<meta property="og:description" content="学习MVC模式的过程中，写了一个简单的框架。并且用这个框架实现了一个简单的留言板。源码在Github里。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-08-09T01:21:45.559Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="一个基于MVC模式的简单框架">
+<meta name="twitter:description" content="学习MVC模式的过程中，写了一个简单的框架。并且用这个框架实现了一个简单的留言板。源码在Github里。">
+    
+        <link rel="alternate" type="application/atom+xml" title="Tayen&#39;s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.6.10">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/author.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Tayen</h5>
+          <a href="mailto:tayenguo@163.com" title="tayenguo@163.com" class="mail">tayenguo@163.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-归档"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-标签"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/tayen-g" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/6077792238" target="_blank" >
+                <i class="icon icon-lg icon-微博"></i>
+                微博
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">一个基于MVC模式的简单框架</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">一个基于MVC模式的简单框架</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-08-09T09:03:25.000Z" itemprop="datePublished" class="page-time">
+  2017-08-09
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/学习/">学习</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#入口文件-index-php"><span class="post-toc-number">1.</span> <span class="post-toc-text">入口文件(index.php)</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#核心文件-keyfile-php"><span class="post-toc-number">2.</span> <span class="post-toc-text">核心文件(keyfile.php)</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#config目录"><span class="post-toc-number">3.</span> <span class="post-toc-text">config目录</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#libs目录"><span class="post-toc-number">4.</span> <span class="post-toc-text">libs目录</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#drivers目录"><span class="post-toc-number">5.</span> <span class="post-toc-text">drivers目录</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-一个基于MVC模式的简单框架"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">一个基于MVC模式的简单框架</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-08-09 09:03:25" datetime="2017-08-09T09:03:25.000Z"  itemprop="datePublished">2017-08-09</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/学习/">学习</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>学习MVC模式的过程中，写了一个简单的框架。并且用这个框架实现了一个简单的留言板。源码在Github里。</p>
+<a id="more"></a>
+<p>首先是框架的目录结构<br>│  index.php            框架入口文件<br>├─app                   application目录<br>│  ├─controller<br>│  ├─model<br>│  └─view<br>├─core                  核心文件目录<br>│  │  keyfile.php<br>│  ├─common             公共文件目录<br>│  ├─config             配置文件目录<br>│  └─libs               库文件目录<br>│      │  config.php<br>│      │  log.php<br>│      │  route.php<br>│      └─drivers        驱动文件目录<br>│          └─log<br>├─log                   日志目录<br>└─vendor                composer目录  </p>
+<p>可以明显看出框架的MVC模式。因为用composer添加了几个模块，因此生成了vendor目录。目录中没有列出了composer的相关文件，有需要可以自行添加。 </p>
+<h2 id="入口文件-index-php"><a href="#入口文件-index-php" class="headerlink" title="入口文件(index.php)"></a>入口文件(index.php)</h2><pre><code>1. 定义常量
+2. 加载函数库
+3. 启动框架
+</code></pre><h2 id="核心文件-keyfile-php"><a href="#核心文件-keyfile-php" class="headerlink" title="核心文件(keyfile.php)"></a>核心文件(keyfile.php)</h2><pre><code>1.  自动加载类库
+2.  加载route类库，解析url
+3.  定义给视图传递内容的函数
+</code></pre><h2 id="config目录"><a href="#config目录" class="headerlink" title="config目录"></a>config目录</h2><pre><code>配置文件。已定义了连接mysql、日志生成方法、默认url访问这三类。
+</code></pre><h2 id="libs目录"><a href="#libs目录" class="headerlink" title="libs目录"></a>libs目录</h2><pre><code>1.  config.php定义函数，获取配置
+2.  log.php定义函数，生成日志
+3.  route.php解析url，接收参数
+</code></pre><h2 id="drivers目录"><a href="#drivers目录" class="headerlink" title="drivers目录"></a>drivers目录</h2><pre><code>暂时只添加了生成日志文件的功能。  
+</code></pre><p>写出这个框架之后，能更好的理解MVC模式。Model定义了连接数据库的方法，以及操作数据库的各种函数；Controller为View中的各种按钮定义了各自的功能，同时调用核心文件里渲染视图的函数；View写了几个静态页面，其中利用模板引擎动态显示内容。</p>
+<p>源码中实现了一个简单的留言板。留言会在首页展示，添加留言会在数据库中生成，并在首页展示；删除留言会在数据库中删除，首页同步删除。如果想测试请自行更改数据库配置的相关文件。<br>框架集成了twig模板引擎，medoo数据库框架，PDO操作数据库的一些函数（注释掉了）。<br>其中还有一些用于测试的输出，已注释。  </p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-08-09T01:21:45.559Z" itemprop="dateUpdated">2017-08-09 01:21:45</time>
+</span><br>
+
+
+        
+        欢迎大家通过邮件/微博与我交流，本文链接：<a href="/2017/08/09/一个基于MVC模式的简单框架/" target="_blank" rel="external">https://tayen-g.github.io/2017/08/09/一个基于MVC模式的简单框架/</a>
+        
+    </div>
+    <footer>
+        <a href="https://tayen-g.github.io">
+            <img src="/img/author.jpg" alt="Tayen">
+            Tayen
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Php/">Php</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/框架/">框架</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://tayen-g.github.io/2017/08/09/一个基于MVC模式的简单框架/&title=《一个基于MVC模式的简单框架》 — Tayen's Blog&pic=https://tayen-g.github.io/img/author.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://tayen-g.github.io/2017/08/09/一个基于MVC模式的简单框架/&title=《一个基于MVC模式的简单框架》 — Tayen's Blog&source=学习MVC模式的过程中，写了一个简单的框架。并且用这个框架实现了一个简单的留言板。源码在Github里。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://tayen-g.github.io/2017/08/09/一个基于MVC模式的简单框架/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《一个基于MVC模式的简单框架》 — Tayen's Blog&url=https://tayen-g.github.io/2017/08/09/一个基于MVC模式的简单框架/&via=https://tayen-g.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://tayen-g.github.io/2017/08/09/一个基于MVC模式的简单框架/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/08/08/分享一个街头演奏集锦/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">【音乐】分享一个街头演奏集锦</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+<section class="comments" id="comments">
+    <!-- UY BEGIN -->
+    <div id="uyan_frame"></div>
+    <script src="http://v2.uyan.cc/code/uyan.js?uid=tayenguo"></script>
+    <!-- UY END -->
+</section>
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        (万一真的有人给呢)谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.png">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Tayen &copy; 2015 - 2017</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://tayen-g.github.io/2017/08/09/一个基于MVC模式的简单框架/&title=《一个基于MVC模式的简单框架》 — Tayen's Blog&pic=https://tayen-g.github.io/img/author.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://tayen-g.github.io/2017/08/09/一个基于MVC模式的简单框架/&title=《一个基于MVC模式的简单框架》 — Tayen's Blog&source=学习MVC模式的过程中，写了一个简单的框架。并且用这个框架实现了一个简单的留言板。源码在Github里。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://tayen-g.github.io/2017/08/09/一个基于MVC模式的简单框架/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《一个基于MVC模式的简单框架》 — Tayen's Blog&url=https://tayen-g.github.io/2017/08/09/一个基于MVC模式的简单框架/&via=https://tayen-g.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://tayen-g.github.io/2017/08/09/一个基于MVC模式的简单框架/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACuUlEQVR42u3awU4cMRAEUP7/pzdSTomiWarabiDS8wmxi8dvDrap7o+PeLx+j6ff//np65+RzPA0W7KGCwMPDw9vtPSn8Z6RLzGn5jO8XzMeHh7eNq/dsp8en2zu7TyzYwYPDw/vJ/DqTbn8fn6c4OHh4f1fvBafxBazyAMPDw/ve3ntFfZ9qJovaLaGlawFDw8Pr7v3FgWwn/DzYn0PDw8P76CqnlyO84jhJIyYDTw8PLwN3kmbVBsczFoK8oty8R8DHh4e3gHv7lZ+/lfJGvJoAw8PD2+P1xbm2806fxF541c0Gx4eHt4yr520jVnzYn/bpvD4Mx4eHt4Cr40A2kh31lIw+85H/l7x8PDwjnnJ0tvq/CxQyF9Ncpzg4eHhbfCSZbUtWXkTwHlrV910hYeHh3eVlzc5nZSp7hbJPvkmHh4e3gIvH+1GPwsmZrv9hYGHh4d3NeGchQsnl+xbxw8eHh7eNq9tIJjx8rihfcrjUYSHh4d3lfeKR95YcH6vP7m+/zUDHh4e3gJvdm2NpiuPh/xgGLY74OHh4a3x2raqk03//TyzyzoeHh7eNq8NXvdCh7xFIH8peHh4eF/DyyOG/HiYhRf5sx4/xcPDw1vgRR8H4UJbPGtfdEuN6nt4eHh4x7y8AHaCmcXBbRkMDw8Pb483K2W1x0N+cW+//8kT8fDw8JZ5yebetkPNruxts9fjU/Dw8PAWeCdlrVlxqz082jaFqDMCDw8P74D3Kke+oedtr3lMnB9jeHh4eHu8dsNti1WzYCJ/bj4PHh4e3l1evqHfuvjmIcWFNiw8PDy8Nd6tw2BW7sqv3XXWgoeHh/etvPbAyMtpd1sTPvI/xsPDw/sSXl7mzy/TbXxcrAcPDw9vjZeHEXlr1PlCT0pleHh4eHu8W5FrfiQkMUeOvFzfw8PDw3vH+wUgakrf4KoWpwAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.6.10"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.6.10" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
